@@ -1,49 +1,36 @@
-// Game state
-const rooms = [
-  { name: "Lobby", code: null, unlocked: true },
-  { name: "Cubicles", code: "kinetic123", unlocked: false },
-  { name: "Printing Room", code: "prop456", unlocked: false },
-  { name: "Break Room", code: "break789", unlocked: false },
-  { name: "Collage Room", code: "collage321", unlocked: false },
-  { name: "Studio", code: "screen654", unlocked: false },
-  { name: "Board Room", code: "data987", unlocked: false },
-  { name: "Main Office", code: "final000", unlocked: false },
+const zones = [
+  { id: 1, name: "Zone 1", code: "alpha", unlocked: true },
+  { id: 2, name: "Zone 2", code: "bravo", unlocked: false },
+  { id: 3, name: "Zone 3", code: "charlie", unlocked: false },
 ];
 
-const inventory = [];
+const badgeList = document.getElementById('badge-list');
+const unlockBtn = document.getElementById('unlock-btn');
+const unlockInput = document.getElementById('unlock-code');
 
-const inventoryList = document.getElementById("inventory-list");
-const codeInput = document.getElementById("code-input");
-const submitCode = document.getElementById("submit-code");
-
-// Add items to inventory visually
-function updateInventory() {
-  inventoryList.innerHTML = "";
-  inventory.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    inventoryList.appendChild(li);
+// Render inventory badges
+function renderBadges() {
+  badgeList.innerHTML = '';
+  zones.forEach(zone => {
+    const li = document.createElement('li');
+    li.textContent = `${zone.name} ${zone.unlocked ? '✅' : '🔒'}`;
+    badgeList.appendChild(li);
   });
 }
 
-// Unlock room function
-function unlockRoom(code) {
-  const room = rooms.find(r => r.code === code);
-  if (room && !room.unlocked) {
-    room.unlocked = true;
-    inventory.push(`${room.name} Badge`);
-    updateInventory();
-    alert(`🎉 ${room.name} is now unlocked!`);
+// Unlock zone when code is correct
+unlockBtn.addEventListener('click', () => {
+  const code = unlockInput.value.trim().toLowerCase();
+  const zone = zones.find(z => z.code === code);
+  if (zone && !zone.unlocked) {
+    zone.unlocked = true;
+    alert(`${zone.name} unlocked!`);
+    renderBadges();
   } else {
-    alert("Invalid code or room already unlocked.");
+    alert('Invalid code or already unlocked.');
   }
-}
-
-// Event listener for code submission
-submitCode.addEventListener("click", () => {
-  const code = codeInput.value.trim();
-  if (code) {
-    unlockRoom(code);
-    codeInput.value = "";
-  }
+  unlockInput.value = '';
 });
+
+// Initialize badges on load
+renderBadges();
