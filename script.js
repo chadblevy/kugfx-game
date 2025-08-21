@@ -12,7 +12,7 @@ const zones = [
 const STORAGE_KEY = 'studio_map_progress';
 let progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || { unlocked: { lobby: true }, current: 'lobby' };
 
-const map = document.getElementById('gameMap');
+const map = document.getElementById('mapImg');
 const hotspotContainer = document.getElementById('hotspots');
 const player = document.getElementById('player');
 const badgeShelf = document.getElementById('badgeShelf');
@@ -90,10 +90,10 @@ resetBtn.addEventListener('click', () => {
 // Predefine areas (percent coords) after map loads:
 map.addEventListener('load', () => {
   const w = 100; const h = 60; // adjust these proportions to fit your design
-  zones.forEach((z, i) => {
-    // Example layout: evenly spaced.
-    z.rect = { x: 5 + i * (w/zones.length), y: 20, w: 8, h: 30 };
-  });
+ zones.forEach((z,i)=>{
+  z.rect = { x: 5 + i*10, y: 20, w: 8, h: 30 }; 
+});
+
   renderHotspots();
   renderBadges();
   moveTo(progress.current);
