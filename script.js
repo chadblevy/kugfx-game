@@ -288,4 +288,45 @@ const zones = [
   },
   // Add more zones similarly...
 ];
+const STORAGE_KEY = 'studio_map_progress';
+
+function loadProgress() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    return JSON.parse(saved);
+  }
+  return { unlocked: { 'lobby': true }, current: 'lobby' };
+}
+
+function saveProgress(progress) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+function renderZones(progress) {
+  const container = document.getElementById('hotspots');
+  container.innerHTML = '';
+  zones.forEach(z => {
+    const unlocked = progress.unlocked[z.id];
+    const div = document.createElement('div');
+    div.className = 'hotspot';
+    div.style.left = `${z.rect.x}%`;
+    div.style.top = `${z.rect.y}%`;
+    div.style.width = `${z.rect.w}%`;
+    div.style.height = `${z.rect.h}%`;
+    div.dataset.locked = unlocked ? 'false' : 'true';
+    div.onclick = () => openZoneDialog(z, unlocked);
+    container.appendChild(div);
+  });
+}
+function attemptUnlock(inputCode) {
+  zones.forEach(z => {
+    if (!progress.unlocked[z.id] && z.code === inputCode && (!z.prereq || progress.unlocked[z.prereq])) {
+      progress.unlocked[z.id] = true;
+      progress.current = z.id;
+      saveProgress(progress);
+      alert(`Unlocked: ${z.name} — Badge: ${z.badge}`);
+    }
+  });
+  renderZones(progress);
+  moveAvatar(progress.current);
+}
 
