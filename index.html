@@ -1,0 +1,143 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Graphics for Media — Studio Map</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">Studio Dashboard</div>
+
+    <div class="controls">
+
+      <button id="enterCodeBtn" class="btn">Enter Unlock Code</button>
+
+      <div id="levelReadout" class="level">Level: Apprentice</div>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+    <div class="mapWrap">
+
+      <img id="mapImg" src="assets/GFX-KU-GameMap.png" alt="Studio Floor Map" />
+
+
+
+      <!-- Player marker -->
+
+      <div id="player" aria-hidden="true" title="You"></div>
+
+
+
+      <!-- Hotspots injected by JS -->
+
+      <div id="hotspots"></div>
+
+    </div>
+
+
+
+    <aside class="sidebar">
+
+      <h2>Badges</h2>
+
+      <div id="badgeShelf" class="badgeShelf">
+
+        <!-- badges injected by JS -->
+
+      </div>
+
+
+
+      <h2 style="margin-top:1.25rem;">Progress</h2>
+
+      <ol id="progressList" class="progressList"></ol>
+
+
+
+      <details style="margin-top:1rem;">
+
+        <summary>Reset my progress (for testing)</summary>
+
+        <button id="resetBtn" class="btn btn--ghost">Reset</button>
+
+      </details>
+
+    </aside>
+
+  </main>
+
+
+
+  <!-- Modal -->
+
+  <dialog id="zoneDialog">
+
+    <div class="dialogBody">
+
+      <h3 id="zoneTitle">Zone</h3>
+
+      <p id="zoneDesc">Description...</p>
+
+      <div id="zoneStatus"></div>
+
+      <div class="dialogActions">
+
+        <button id="dialogClose" class="btn">Close</button>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+
+  <!-- Unlock Code Modal -->
+
+  <dialog id="codeDialog">
+
+    <form method="dialog" class="dialogBody" id="codeForm">
+
+      <h3>Enter Unlock Code</h3>
+
+      <input id="codeInput" class="input" placeholder="Paste code here" required />
+
+      <div class="dialogActions">
+
+        <button class="btn" value="cancel">Cancel</button>
+
+        <button class="btn btn--primary" value="default">Unlock</button>
+
+      </div>
+
+      <p class="hint">Codes are given by the Creative Director after each submission.</p>
+
+    </form>
+
+  </dialog>
+
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
