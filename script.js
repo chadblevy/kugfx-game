@@ -266,3 +266,26 @@ movePlayerTo(progress.current);
 [zoneDialog, codeDialog].forEach(dlg=>{
   dlg.addEventListener('cancel', (e)=> e.preventDefault()); // keep styling consistent
 });
+
+const zones = [
+  {
+    id: "lobby",
+    name: "Lobby",
+    desc: "Start here!",
+    rect: { x: 2, y: 60, w: 12, h: 25 },
+    code: null,
+    badge: "🪪",
+    prereq: null
+  },
+  {
+    id: "bullpen",
+    name: "Cubicle — Kinetic Typography",
+    desc: "Create your Kinetic Typography project.",
+    rect: { x: 16, y: 55, w: 12, h: 30 },
+    code: "CODE-KINETIC-2025",
+    badge: "⌨️",
+    prereq: "lobby"
+  },
+  // Add more zones similarly...
+];
+
