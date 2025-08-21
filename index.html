@@ -2,30 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KUGFX Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Map - KUGFX</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Map area -->
-    <div class="map-container">
-      <img src="assets/GFX-KU-GameMap.png" alt="Game Map" id="game-map">
-      <div id="player-marker"></div>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <h2>Inventory</h2>
-      <ul id="badge-list"></ul>
-
-      <div class="unlock-section">
-        <input type="text" id="unlock-code" placeholder="Enter unlock code">
-        <button id="unlock-btn">Unlock</button>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>Badges</h2>
+      <ul id="badgeShelf" class="badgeShelf"></ul>
+      <div class="unlock">
+        <input type="text" id="codeInput" placeholder="Enter unlock code">
+        <button id="unlockBtn">Unlock</button>
       </div>
+      <button id="resetBtn" class="reset">Reset Progress</button>
+    </aside>
+    <div class="map-container">
+      <img src="assets/GFX-KU-GameMap.png" id="gameMap" alt="Studio Map">
+      <div id="player" title="You"></div>
+      <div id="hotspots"></div>
     </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
