@@ -1,69 +1,49 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #222;
-  color: #fff;
+// Game state
+const rooms = [
+  { name: "Lobby", code: null, unlocked: true },
+  { name: "Cubicles", code: "kinetic123", unlocked: false },
+  { name: "Printing Room", code: "prop456", unlocked: false },
+  { name: "Break Room", code: "break789", unlocked: false },
+  { name: "Collage Room", code: "collage321", unlocked: false },
+  { name: "Studio", code: "screen654", unlocked: false },
+  { name: "Board Room", code: "data987", unlocked: false },
+  { name: "Main Office", code: "final000", unlocked: false },
+];
+
+const inventory = [];
+
+const inventoryList = document.getElementById("inventory-list");
+const codeInput = document.getElementById("code-input");
+const submitCode = document.getElementById("submit-code");
+
+// Add items to inventory visually
+function updateInventory() {
+  inventoryList.innerHTML = "";
+  inventory.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    inventoryList.appendChild(li);
+  });
 }
 
-#game {
-  display: flex;
-  height: 100vh;
+// Unlock room function
+function unlockRoom(code) {
+  const room = rooms.find(r => r.code === code);
+  if (room && !room.unlocked) {
+    room.unlocked = true;
+    inventory.push(`${room.name} Badge`);
+    updateInventory();
+    alert(`🎉 ${room.name} is now unlocked!`);
+  } else {
+    alert("Invalid code or room already unlocked.");
+  }
 }
 
-/* Sidebar styling */
-#sidebar {
-  width: 250px;
-  background: #333;
-  padding: 20px;
-  border-right: 2px solid #444;
-}
-
-#sidebar h2 {
-  margin-top: 0;
-}
-
-#inventory-list {
-  list-style: none;
-  padding: 0;
-}
-
-/* Map area styling */
-#map-area {
-  flex: 1;
-  position: relative;
-  background: #111;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#map-area img {
-  max-width: 90%;
-  border: 2px solid #fff;
-  border-radius: 8px;
-}
-
-#code-area {
-  margin-top: 20px;
-}
-
-#code-input {
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-}
-
-#submit-code {
-  padding: 8px 12px;
-  margin-left: 5px;
-  background: #28a745;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-}
-
-#submit-code:hover {
-  background: #218838;
-}
+// Event listener for code submission
+submitCode.addEventListener("click", () => {
+  const code = codeInput.value.trim();
+  if (code) {
+    unlockRoom(code);
+    codeInput.value = "";
+  }
+});
