@@ -17,7 +17,7 @@ const hotspotContainer = document.getElementById('hotspots');
 const player = document.getElementById('player');
 const badgeShelf = document.getElementById('badgeShelf');
 const codeInput = document.getElementById('codeInput');
-const unlockBtn = document.getElementById('unlockBtn');
+const unlockBtn = document.getElementById('enterCodeBtn');
 const resetBtn = document.getElementById('resetBtn');
 
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
