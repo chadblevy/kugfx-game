@@ -1,56 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Map</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Studio LC30 – Lobby</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="lobby">
+  <center>
+    <h1>👾 Welcome to <span class="blink">Studio LC30</span> 👾</h1>
+    <hr>
 
-<!-- Topbar -->
-<div class="topbar">
-  <div class="brand">Studio Map</div>
-  <div class="controls">
-    <input type="text" id="codeInput" class="input" placeholder="Enter unlock code">
-    <button id="unlockBtn" class="btn btn--primary">Unlock</button>
-  </div>
-</div>
+    <p><b>You have entered the Lobby.</b></p>
 
-<!-- Layout -->
-<div class="layout">
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Badges</h2>
-    <ul id="badgeShelf" class="badgeShelf"></ul>
-
-    <h2>Progress</h2>
-    <ul id="progressList" class="progressList"></ul>
-
-    <button id="prevBtn" class="btn navBtn navBtn--left">&#8592;</button>
-    <button id="nextBtn" class="btn navBtn navBtn--right">&#8594;</button>
-  </div>
-
-  <!-- Map viewport -->
-  <div class="viewport">
-    <div id="mapStrip" class="mapStrip"></div>
-  </div>
-
-</div>
-
-<!-- Room Modal -->
-<dialog id="roomDialog" class="dialog">
-  <div class="dialogBody">
-    <h3 id="roomTitle"></h3>
-    <p id="roomDesc"></p>
-    <div id="roomTasks"></div>
-    <div class="dialogActions">
-      <button id="dialogClose" class="btn btn--ghost">Close</button>
+    <div class="videoBox">
+      <video width="480" controls poster="assets/map/lobby.png">
+        <source src="assets/videos/welcome.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
     </div>
-  </div>
-</dialog>
 
-<script src="script.js"></script>
+    <p><a href="cubicle.html" class="btn">Enter the Cubicles →</a></p>
+  </center>
 </body>
 </html>
